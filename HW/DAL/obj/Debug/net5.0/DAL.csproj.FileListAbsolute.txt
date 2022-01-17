@@ -1,0 +1,15 @@
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/bin/Debug/net5.0/DAL.deps.json
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/bin/Debug/net5.0/DAL.dll
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/bin/Debug/net5.0/ref/DAL.dll
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/bin/Debug/net5.0/DAL.pdb
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/bin/Debug/net5.0/Domain.dll
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/bin/Debug/net5.0/Domain.pdb
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.csproj.AssemblyReference.cache
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.AssemblyInfoInputs.cache
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.AssemblyInfo.cs
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.csproj.CoreCompileInputs.cache
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.csproj.CopyComplete
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.dll
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/ref/DAL.dll
+/Users/giorgizeikidze/Documents/ics0031-2020f/HW3/DAL/obj/Debug/net5.0/DAL.pdb
