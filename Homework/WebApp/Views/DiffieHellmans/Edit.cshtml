@@ -1,0 +1,69 @@
+@model Domain.DiffieHellman
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>DiffieHellman</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PrivateKeyA" class="control-label"></label>
+                <input asp-for="PrivateKeyA" class="form-control" />
+                <span asp-validation-for="PrivateKeyA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrivateKeyB" class="control-label"></label>
+                <input asp-for="PrivateKeyB" class="form-control" />
+                <span asp-validation-for="PrivateKeyB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="P" class="control-label"></label>
+                <input asp-for="P" class="form-control" />
+                <span asp-validation-for="P" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="G" class="control-label"></label>
+                <input asp-for="G" class="form-control" />
+                <span asp-validation-for="G" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublicKeyA" class="control-label"></label>
+                <input asp-for="PublicKeyA" class="form-control" />
+                <span asp-validation-for="PublicKeyA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublicKeyB" class="control-label"></label>
+                <input asp-for="PublicKeyB" class="form-control" />
+                <span asp-validation-for="PublicKeyB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SymmetricKey" class="control-label"></label>
+                <input asp-for="SymmetricKey" class="form-control" />
+                <span asp-validation-for="SymmetricKey" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

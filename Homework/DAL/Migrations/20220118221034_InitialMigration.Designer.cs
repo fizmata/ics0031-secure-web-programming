@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220118132946_InitialMigration")]
+    [Migration("20220118221034_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,74 @@ namespace DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Caesars");
+                });
+
+            modelBuilder.Entity("Domain.DiffieHellman", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("G")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("P")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PrivateKeyA")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PrivateKeyB")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PublicKeyA")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PublicKeyB")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("SymmetricKey")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DiffieHellmans");
+                });
+
+            modelBuilder.Entity("Domain.Rsa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CipherText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("D")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("E")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("N")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PlainText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Rsas");
                 });
 
             modelBuilder.Entity("Domain.Vigenere", b =>
@@ -265,6 +333,24 @@ namespace DAL.Migrations
                 });
 
             modelBuilder.Entity("Domain.Caesar", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.DiffieHellman", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Rsa", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()

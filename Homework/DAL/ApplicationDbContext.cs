@@ -9,6 +9,8 @@ namespace DAL
     {
         public DbSet<Caesar> Caesars { get; set; }
         public DbSet<Vigenere> Vigeneres { get; set; }
+        public DbSet<DiffieHellman> DiffieHellmans { get; set; }
+        public DbSet<Rsa> Rsas { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

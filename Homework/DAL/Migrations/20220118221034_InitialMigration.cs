@@ -175,6 +175,56 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DiffieHellmans",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    PrivateKeyA = table.Column<int>(type: "INTEGER", nullable: false),
+                    PrivateKeyB = table.Column<int>(type: "INTEGER", nullable: true),
+                    P = table.Column<int>(type: "INTEGER", nullable: true),
+                    G = table.Column<int>(type: "INTEGER", nullable: true),
+                    PublicKeyA = table.Column<int>(type: "INTEGER", nullable: true),
+                    PublicKeyB = table.Column<int>(type: "INTEGER", nullable: true),
+                    SymmetricKey = table.Column<int>(type: "INTEGER", nullable: true),
+                    UserId = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DiffieHellmans", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DiffieHellmans_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rsas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    N = table.Column<int>(type: "INTEGER", nullable: true),
+                    D = table.Column<int>(type: "INTEGER", nullable: true),
+                    E = table.Column<int>(type: "INTEGER", nullable: true),
+                    PlainText = table.Column<string>(type: "TEXT", nullable: true),
+                    CipherText = table.Column<string>(type: "TEXT", nullable: true),
+                    UserId = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rsas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rsas_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Vigeneres",
                 columns: table => new
                 {
@@ -239,6 +289,16 @@ namespace DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DiffieHellmans_UserId",
+                table: "DiffieHellmans",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rsas_UserId",
+                table: "Rsas",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vigeneres_UserId",
                 table: "Vigeneres",
                 column: "UserId");
@@ -263,6 +323,12 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Caesars");
+
+            migrationBuilder.DropTable(
+                name: "DiffieHellmans");
+
+            migrationBuilder.DropTable(
+                name: "Rsas");
 
             migrationBuilder.DropTable(
                 name: "Vigeneres");

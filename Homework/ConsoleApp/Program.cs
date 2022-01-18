@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography;
 
 
 namespace ConsoleApp
@@ -20,6 +21,8 @@ namespace ConsoleApp
             {
                 Console.WriteLine("C) Cesar");
                 Console.WriteLine("V) Vigenere");
+                Console.WriteLine("R) RSA");
+                Console.WriteLine("D) Diffie Hellman");
                 Console.WriteLine("T) Terminate");
                 Console.WriteLine("--------------");
                 Console.Write("Your choice: ");
@@ -34,12 +37,18 @@ namespace ConsoleApp
                     case "C":
                         Cesar();
                         break;
+                    case "R":
+                        Rsa();
+                        break;
+                    case "D":
+                        DiffieHellman();
+                        break;
                 }
             } while (choice != "T");
             
         }
 
-        static void Vigenere()
+        private static void Vigenere()
         {
             var choice = "";
             do
@@ -68,7 +77,7 @@ namespace ConsoleApp
             } while (choice != "T");
         }
 
-        static void Cesar()
+        private static void Cesar()
         {
             var choice = "";
 
@@ -175,7 +184,6 @@ namespace ConsoleApp
             return charValue;
         }
         
-        
         private static int NormalizeCharValue(int charValue, OperationType type)
         {
             // Normalize the actual number we're going to shift with
@@ -199,6 +207,97 @@ namespace ConsoleApp
             }
 
             return charValue;
+        }
+
+        private static void Rsa()
+        {
+            
+            var choice = "";
+            var rsa = new int[3] ;
+
+            do
+            {
+                Console.WriteLine("***** RSA *****");
+                Console.WriteLine("E) Encrypt");
+                Console.WriteLine("D) Decrypt");
+                Console.WriteLine("T) Terminate");
+                Console.WriteLine("--------------");
+                Console.Write("Your choice: ");
+
+                choice = Console.ReadLine()?.Trim()?.ToUpper();
+                
+                switch (choice)
+                {
+                    case "E":
+                        Console.WriteLine("Input your string");
+                        rsa =PrimeCrypto.GenerateRSA();
+                        Console.WriteLine(PrimeCrypto.RsaEnc(Console.ReadLine()?.Trim(),rsa[1],rsa[0]));
+                        Console.WriteLine("n = " + rsa[0]);
+                        Console.WriteLine("e = " + rsa[1]);
+                        Console.WriteLine("d = " + rsa[2]);
+                        break;
+                    case "D":
+                        Console.WriteLine("Input your string");
+                        int n, d;
+                        if (rsa[1] == 0)
+                        {
+                            Console.WriteLine("Input your n (shared part of the key)");
+                            while (true)
+                            {
+                                if (!int.TryParse(Console.ReadLine()?.Trim(), out n))
+                                {
+                                    Console.WriteLine("Not an valid integer!");
+                                    continue;
+                                }
+                                break;
+                            }
+                            Console.WriteLine("Input your d (private part of the key)");
+                            while (true)
+                            {
+                                if (!int.TryParse(Console.ReadLine()?.Trim(), out d))
+                                {
+                                    Console.WriteLine("Not an valid integer!");
+                                    continue;
+                                }
+                                break;
+                            }
+                            Console.WriteLine(PrimeCrypto.RsaDec(Console.ReadLine()?.Trim(), d,n));
+                            break;
+                        }
+                        Console.WriteLine(PrimeCrypto.RsaDec(Console.ReadLine()?.Trim(), rsa[2],rsa[0]));
+                        break;
+                }
+            } while (choice != "T");
+        }
+
+        private static void DiffieHellman() 
+        {
+            var choice = "";
+            do
+            {
+                Console.WriteLine("***** RSA *****");
+                Console.WriteLine("T) Terminate");
+                Console.WriteLine("--------------");
+                Console.Write("Your choice: ");
+                Console.WriteLine("Pick secret integer to encrypt");
+                choice = Console.ReadLine()?.Trim().ToUpper();
+                if (!int.TryParse(choice, out var secret))
+                {
+                    Console.WriteLine("Not an valid integer!");
+                    continue;
+                }
+
+                var (prime, primitive, serverSecret, ourPartial, theirPartial, sharedOur) =
+                    PrimeCrypto.GenerateDH(0, 0, secret);
+                
+                Console.WriteLine("Prime number P is: " + prime);
+                Console.WriteLine("Primitive (Base) number is: " + primitive);
+                Console.WriteLine("Server side secret:" + serverSecret);
+                Console.WriteLine("Server Partial secret: " + ourPartial);
+                Console.WriteLine("User Partial secret: " + theirPartial);
+                Console.WriteLine("Shared secret: " + sharedOur);
+
+            } while (choice != "T");
         }
     }
 }

@@ -5,7 +5,7 @@ namespace ConsoleApp
 {
     public static class MyExtensions
     {
-        private static List<int> UnicodeCodePoints(string s)
+        public static List<int> UnicodeCodePoints(string s)
         {
             List<int> unicodePoints = new List<int>();
             for (int i = 0; i < s.Length; i++)
